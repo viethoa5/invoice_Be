@@ -83,7 +83,11 @@ public class AdminController {
     public List<UserReturnType> getAllUser(HttpServletResponse response, @RequestParam Optional<String> status) {
         authenticate(getUserInfo(), response);
         if (response.getStatus() != 403) {
-            return adminServer.getUserFromStatus(status.get());
+            if (status.isPresent()) {
+                return adminServer.getUserFromStatus(status.get());
+            } else {
+                return adminServer.getAllUser();
+            }
         }
      return null;
     }

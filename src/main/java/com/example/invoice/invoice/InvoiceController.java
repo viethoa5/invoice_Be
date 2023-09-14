@@ -42,7 +42,6 @@ public class InvoiceController {
                                           dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
                                           programId, guardian, evisa, additionFee, userId, consultantId,
                                           discountId, isExtraBed, isBaby, fee, extendedFee, paidFee, refundFee);
-              System.out.println(guardian);
     }
     @PutMapping(value = "/{Id}")
     public Invoice updateInvoice(@PathVariable Integer Id,@ModelAttribute("students") String students, @ModelAttribute("airFlight") String airFlight, @ModelAttribute("doe") Date doe, @ModelAttribute("returnFlight") String returnFlight, @ModelAttribute("dor") Date dod,

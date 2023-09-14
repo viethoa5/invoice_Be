@@ -40,7 +40,6 @@ public class AuthServer {
     }
 
     public AuthResponseType authenticate(AuthRequest request) {
-        System.out.println(request.getEmail());
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
                 request.getEmail(),
                 request.getPassword()

@@ -60,24 +60,27 @@ public class AdminServer {
                 return usersList.get();
             }
         } else {
-            if (status.toLowerCase() == "deactive") {
+            if (status.toLowerCase().equals("deactive")) {
                 Optional<List<UserReturnType>> usersList = userReposity.findAllDeActiveUser();
                 if (usersList.isPresent()) {
                     return usersList.get();
                 }
             } else {
-                if (status.toLowerCase() == "noneadmin") {
+                if (status.toLowerCase().equals("noneadmin")) {
                     Optional<List<UserReturnType>> usersList = userReposity.findAllNonAdminUser();
-                    if (usersList.isPresent()) {
-                        return usersList.get();
-                    }
-                } else {
-                    Optional<List<UserReturnType>> usersList = userReposity.findAlLUser();
                     if (usersList.isPresent()) {
                         return usersList.get();
                     }
                 }
             }
+        }
+        return null;
+    }
+
+    public List<UserReturnType> getAllUser() {
+        Optional<List<UserReturnType>> usersList = userReposity.findAlLUser();
+        if (usersList.isPresent()) {
+            return usersList.get();
         }
         return null;
     }

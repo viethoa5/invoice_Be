@@ -30,8 +30,6 @@ public class InvoiceServer {
         } else {
             List<Invoice> invoices = new ArrayList<Invoice>();
             invoices.addAll(invoiceReposity.findAllByUserId(user.getUserId()).get());
-            System.out.println(invoices);
-         //   invoices.addAll(user.getInvoicesFromConsultant());
             return invoices;
         }
     }
