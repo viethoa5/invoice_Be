@@ -4,6 +4,7 @@ target/
 !**/src/test/**/target/
 .idea
 .mvn
+!**/src/main/resources/application.properties
 ### STS ###
 .apt_generated
 .classpath
@@ -28,6 +29,5 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-!**/src/main/resources/application.properties
 ### VS Code ###
 .vscode/
