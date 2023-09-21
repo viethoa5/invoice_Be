@@ -36,12 +36,10 @@ public class User implements UserDetails {
     @Fetch(FetchMode.JOIN)
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Invoice> invoicesFromAgent;
-    @JsonIgnore
     @Getter
     @Setter
-    @OneToMany(mappedBy = "consultant", fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
-    private Set<Invoice> invoicesFromConsultant;
+    @Column(name = "consultant")
+    private String consultant;
     @Setter
     @Getter
     private boolean isAdmin;
@@ -56,13 +54,14 @@ public class User implements UserDetails {
         this.UserId = id;
     }
     public User() {}
-    public User(String username, String password, String fullName, String position) {
+    public User(String username, String password, String fullName, String position, String consultant) {
         this.gmail = username;
         this.userPassword = password;
         this.fullName = fullName;
         this.position = position;
         this.isAdmin = false;
         this.isActive = false;
+        this.consultant = consultant;
     }
 
     @Override

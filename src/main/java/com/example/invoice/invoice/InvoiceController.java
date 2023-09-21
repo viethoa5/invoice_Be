@@ -35,29 +35,29 @@ public class InvoiceController {
     @PostMapping(value = "/create")
     public void createInvoice(@ModelAttribute("students") String students, @ModelAttribute("airFlight") String airFlight, @ModelAttribute("doe") Date doe, @ModelAttribute("returnFlight") String returnFlight, @ModelAttribute("dor") Date dod,
                               @ModelAttribute("dayBeforeCamp") int dayBeforeCamp, @ModelAttribute("dayAfterCamp") int dayAfterCamp, @ModelAttribute("roomType") String roomType, @ModelAttribute("commission") Double commission, @ModelAttribute("dor") Date dor,
-                              @ModelAttribute("programId") Integer programId, @ModelAttribute("guardian") String guardian, @ModelAttribute("evisa") boolean evisa, @ModelAttribute("additionFee") String additionFee, @ModelAttribute("userId") int userId, @ModelAttribute("consultantId") int consultantId,
+                              @ModelAttribute("programId") Integer programId, @ModelAttribute("guardian") String guardian, @ModelAttribute("evisa") boolean evisa, @ModelAttribute("additionFee") String additionFee, @ModelAttribute("userId") int userId, @ModelAttribute("consultant") String consultant,
                               @ModelAttribute("discountId") int discountId, @ModelAttribute("isExtraBed") boolean isExtraBed, @ModelAttribute("isBaby") boolean isBaby, @ModelAttribute("fee") double fee, @ModelAttribute("extendedFee") double extendedFee,
                               @ModelAttribute("paidFee") double paidFee, @ModelAttribute("refundFee") double refundFee) {
               invoiceServer.createInvoice(students, airFlight, doe, returnFlight, dod,
                                           dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
-                                          programId, guardian, evisa, additionFee, userId, consultantId,
+                                          programId, guardian, evisa, additionFee, userId, consultant,
                                           discountId, isExtraBed, isBaby, fee, extendedFee, paidFee, refundFee);
     }
     @PutMapping(value = "/{Id}")
     public Invoice updateInvoice(@PathVariable Integer Id,@ModelAttribute("students") String students, @ModelAttribute("airFlight") String airFlight, @ModelAttribute("doe") Date doe, @ModelAttribute("returnFlight") String returnFlight, @ModelAttribute("dor") Date dod,
                                  @ModelAttribute("dayBeforeCamp") int dayBeforeCamp, @ModelAttribute("dayAfterCamp") int dayAfterCamp, @ModelAttribute("roomType") String roomType, @ModelAttribute("commission") Double commission, @ModelAttribute("dor") Date dor,
-                                 @ModelAttribute("programId") Integer programId, @ModelAttribute("guardian") String guardian, @ModelAttribute("evisa") boolean evisa, @ModelAttribute("additionFee") String additionFee, @ModelAttribute("userId") int userId, @ModelAttribute("consultantId") int consultantId,
+                                 @ModelAttribute("programId") Integer programId, @ModelAttribute("guardian") String guardian, @ModelAttribute("evisa") boolean evisa, @ModelAttribute("additionFee") String additionFee, @ModelAttribute("userId") int userId, @ModelAttribute("consultant") String consultant,
                                  @ModelAttribute("discountId") int discountId, @ModelAttribute("isExtraBed") boolean isExtraBed, @ModelAttribute("isBaby") boolean isBaby, @ModelAttribute("fee") double fee, @ModelAttribute("extendedFee") double extendedFee,
                                  @ModelAttribute("paidFee") double paidFee, @ModelAttribute("refundFee") double refundFee, @ModelAttribute("invoiceStatus") String invoiceStatus, @ModelAttribute("dateOfDecline") String dateOfDecline) {
         if (dateOfDecline.isEmpty()) {
             return invoiceServer.updateUserInvoice(Id, students, airFlight, doe, returnFlight, dod,
                     dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
-                    programId, guardian, evisa, additionFee, userId, consultantId,
+                    programId, guardian, evisa, additionFee, userId, consultant,
                     discountId, isExtraBed, isBaby, fee, extendedFee, getUserInfo(), paidFee, refundFee, invoiceStatus, null);
         } else {
             return invoiceServer.updateUserInvoice(Id, students, airFlight, doe, returnFlight, dod,
                     dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
-                    programId, guardian, evisa, additionFee, userId, consultantId,
+                    programId, guardian, evisa, additionFee, userId, consultant,
                     discountId, isExtraBed, isBaby, fee, extendedFee, getUserInfo(), paidFee, refundFee, invoiceStatus, Date.valueOf(dateOfDecline));
         }
     }

@@ -14,6 +14,7 @@ public class UserReturnType {
     private String gmail;
     private String position;
     private Integer userId;
+    private String consultant;
     private boolean isAdmin;
     private boolean isActive;
 
@@ -24,5 +25,6 @@ public class UserReturnType {
         this.position = user.getPosition();
         this.userId = user.getUserId();
         this.isActive = user.isActive();
+        this.consultant = user.getConsultant();
     }
 }

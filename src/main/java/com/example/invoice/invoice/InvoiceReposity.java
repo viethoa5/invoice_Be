@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface InvoiceReposity extends JpaRepository<Invoice, Integer> {
     Optional<Invoice> findById(Integer Id);
-    @Query("select i from Invoice i where i.user.UserId = :userId or i.consultant.UserId = :userId")
+    @Query("select i from Invoice i where i.user.UserId = :userId")
     Optional<List<Invoice>> findAllByUserId(Integer userId);
     @Modifying
     @Query(value="delete from Invoice i where i.user.UserId = :userId and i.id = :Id")

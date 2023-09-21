@@ -21,11 +21,12 @@ public class UserServer {
         return null;
     }
 
-    public void updateUser(String fullName, String position, Integer id) {
+    public void updateUser(String fullName, String position, String consultant, Integer id) {
         Optional<User> user = userReposity.findById(id);
         if (user.isPresent()) {
             user.get().setPosition(position);
             user.get().setFullName(fullName);
+            user.get().setConsultant(consultant);
             userReposity.save(user.get());
         } else {
             throw new IllegalStateException("user not existed");
@@ -39,7 +40,7 @@ public class UserServer {
     public UserReturnType getUserDetail(int id) {
         Optional<User> user = userReposity.findById(id);
         if (user.isPresent()) {
-            return new UserReturnType(user.get().getFullName(), user.get().getGmail(), user.get().getPosition(), id, user.get().isAdmin(), user.get().isActive());
+            return new UserReturnType(user.get().getFullName(), user.get().getGmail(), user.get().getPosition(), id, user.get().getConsultant(), user.get().isAdmin(), user.get().isActive());
         } else {
             throw new IllegalStateException("user not existed");
         }

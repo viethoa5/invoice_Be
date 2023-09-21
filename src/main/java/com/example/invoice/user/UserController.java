@@ -32,9 +32,9 @@ public class UserController {
         userServer.updateUserPassword(currentPassword, newPassword, getUserInfo());
     }
     @PutMapping(value = "/{Id}")
-    public void updateUser(@ModelAttribute("fullName") String fullName, @ModelAttribute("position") String position) {
+    public void updateUser(@ModelAttribute("fullName") String fullName, @ModelAttribute("position") String position, @ModelAttribute("consultant") String consultant) {
         User user = getUserInfo();
-        userServer.updateUser(fullName, position, user.getUserId());
+        userServer.updateUser(fullName, position, consultant, user.getUserId());
     }
     @DeleteMapping(value = "/{Id}")
     public void deleteUser(@PathVariable Integer Id) {

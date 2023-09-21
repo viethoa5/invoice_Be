@@ -65,11 +65,6 @@ public class Invoice {
     @JoinColumn(name = "UserId")
     private User user;
     @Getter
-    @Setter
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ConsultantId")
-    private User consultant;
-    @Getter
     @ManyToOne(cascade = CascadeType.ALL)
     @Setter
     @JoinColumn(name = "discountId")
@@ -99,8 +94,12 @@ public class Invoice {
     @Getter
     @Setter
     private Double refund;
+    @Getter
+    @Setter
+    private String consultant;
     public Invoice(){}
-    public Invoice(String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission,Date dor, String guardian, boolean evisa, String additionFee, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, double paid, Double refund) {
+    public Invoice(String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission,Date dor, String guardian, boolean evisa, String additionFee,
+                   boolean isExtraBed, boolean isBaby, double fee, double extendedFee, double paid, Double refund, String consultant) {
         this.students = students;
         this.flight = airFlight;
         this.dateOfEntry = doe;
@@ -122,9 +121,10 @@ public class Invoice {
         this.status = "ACTIVE";
         this.declineDays = null;
         this.refund = refund;
+        this.consultant = consultant;
     }
     public void updateInvoice(String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission,Date dor, String guardian, boolean evisa,
-                              String additionFee, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, double paidFee, double refundFee, String status, Date dateOfDecline) {
+                              String additionFee, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, double paidFee, double refundFee, String status, Date dateOfDecline, String consultant) {
         this.students = students;
         this.flight = airFlight;
         this.dateOfEntry = doe;
@@ -146,5 +146,6 @@ public class Invoice {
         this.refund = refundFee;
         this.status = status;
         this.declineDays = dateOfDecline;
+        this.consultant = consultant;
     }
 }

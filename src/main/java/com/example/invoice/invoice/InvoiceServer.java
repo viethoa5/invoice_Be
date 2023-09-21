@@ -44,15 +44,13 @@ public class InvoiceServer {
     }
 
 
-    public void createInvoice(String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission, Date dor, Integer programId, String guardian, boolean evisa, String additionFee, int userId, int consultantId, int discountId, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, double paid, double refund) {
+    public void createInvoice(String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission, Date dor, Integer programId, String guardian, boolean evisa, String additionFee, int userId, String consultant, int discountId, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, double paid, double refund) {
         Optional<Program> program = programReposity.findById(programId);
         Optional<User> agent = userReposity.findById(userId);
-        Optional<User> consultant = userReposity.findById(consultantId);
         Optional<Discount> discount = discountReposity.findById(discountId);
         Invoice invoice = new Invoice(students, airFlight, doe, returnFlight, dod, dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
-                guardian, evisa, additionFee, isExtraBed, isBaby, fee, extendedFee, paid, refund);
-        if (consultant.isPresent() && agent.isPresent() && program.isPresent()) {
-            invoice.setConsultant(consultant.get());
+                guardian, evisa, additionFee, isExtraBed, isBaby, fee, extendedFee, paid, refund, consultant);
+        if (agent.isPresent() && program.isPresent()) {
             invoice.setUser(agent.get());
             invoice.setProgram(program.get());
             if (discount.isPresent()) {
@@ -63,11 +61,11 @@ public class InvoiceServer {
     }
 
     public Invoice updateUserInvoice(int Id, String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission, Date dor, Integer programId, String guardian, boolean evisa, String additionFee, int userId,
-                                     int consultantId, int discountId, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, User user, double paidFee, double refundFee, String status, Date dateOfDecline) {
-        if (userId == user.getUserId() || consultantId == user.getUserId() || user.isAdmin()) {
+                                     String consultant, int discountId, boolean isExtraBed, boolean isBaby, double fee, double extendedFee, User user, double paidFee, double refundFee, String status, Date dateOfDecline) {
+        if (userId == user.getUserId() || user.isAdmin()) {
             return updateInvoice(Id, students, airFlight, doe, returnFlight, dod,
                     dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
-                    programId, guardian, evisa, additionFee, userId, consultantId,
+                    programId, guardian, evisa, additionFee, userId, consultant,
                     discountId, isExtraBed, isBaby, fee, extendedFee, paidFee, refundFee, status, dateOfDecline);
         } else {
             return null;
@@ -75,20 +73,18 @@ public class InvoiceServer {
     }
 
     private Invoice updateInvoice(int Id, String students, String airFlight, Date doe, String returnFlight, Date dod, int dayBeforeCamp, int dayAfterCamp, String roomType, Double commission, Date dor, Integer programId, String guardian, boolean evisa, String additionFee, int userId,
-                                  int consultantId, int discountId, boolean isExtraBed, boolean isBaby, double fee, double extendedFee,double paidFee, double refundFee, String status, Date dateOfDecline) {
+                                  String consultant, int discountId, boolean isExtraBed, boolean isBaby, double fee, double extendedFee,double paidFee, double refundFee, String status, Date dateOfDecline) {
         Optional<Invoice> invoice = invoiceReposity.findById(Id);
         Optional<User> agent = userReposity.findById(userId);
-        Optional<User> consultant = userReposity.findById(consultantId);
         Optional<Discount> discount = discountReposity.findById(discountId);
         Optional<Program> program = programReposity.findById(programId);
-        if (invoice.isPresent() && agent.isPresent() && consultant.isPresent()) {
+        if (invoice.isPresent() && agent.isPresent()) {
             Invoice myInvoice = invoice.get();
             myInvoice.updateInvoice(students, airFlight, doe, returnFlight, dod,
                     dayBeforeCamp, dayAfterCamp, roomType, commission, dor,
                     guardian, evisa, additionFee,
-                    isExtraBed, isBaby, fee, extendedFee, paidFee, refundFee, status, dateOfDecline);
+                    isExtraBed, isBaby, fee, extendedFee, paidFee, refundFee, status, dateOfDecline, consultant);
             myInvoice.setUser(agent.get());
-            myInvoice.setConsultant(consultant.get());
             myInvoice.setProgram(program.get());
             if (discount.isPresent()) {
                 myInvoice.setDiscount(discount.get());

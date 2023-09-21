@@ -14,4 +14,5 @@ public class AuthRegisterType {
     private String email;
     private String password;
     private String position;
+    private String consultant;
 }

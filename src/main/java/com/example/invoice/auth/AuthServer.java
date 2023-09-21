@@ -23,7 +23,7 @@ public class AuthServer {
 
     public void register(AuthRegisterType request, HttpServletResponse response) {
         String encodePassword = passwordEncoder.encode(request.getPassword());
-        var user = new User(request.getEmail(), encodePassword, request.getFullName(), request.getPosition());
+        var user = new User(request.getEmail(), encodePassword, request.getFullName(), request.getPosition(), request.getConsultant());
         userReposity.save(user);
         response.setStatus(200);
     }
