@@ -6,7 +6,6 @@ import com.example.invoice.program.Program;
 import com.example.invoice.program.ProgramReposity;
 import com.example.invoice.user.User;
 import com.example.invoice.user.UserReposity;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

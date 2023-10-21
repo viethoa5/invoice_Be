@@ -1,7 +1,6 @@
 package com.example.invoice.invoice;
 
 import com.example.invoice.user.User;
-import com.mysql.cj.xdevapi.JsonArray;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
